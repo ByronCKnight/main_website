@@ -76,7 +76,7 @@ const PricingPage = () => {
                 <li>Basic features</li>
                 <li>Simple maintenance</li>
               </ul>
-              <Link href="/contact" className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
+              <Link href="/contact" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-transform transform hover:scale-110 shadow-lg hover:shadow-2xl duration-300">
                 Get Started
               </Link>
             </div>
@@ -96,7 +96,7 @@ const PricingPage = () => {
                 <li>Advanced features</li>
                 <li>High level maintenance</li>
               </ul>
-              <Link href="/contact" className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
+              <Link href="/contact" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-transform transform hover:scale-110 shadow-lg hover:shadow-2xl duration-300">
                 Get Started
               </Link>
             </div>
@@ -117,7 +117,7 @@ const PricingPage = () => {
                 <li>All features</li>
                 <li>Top priority support and maintenance</li>
               </ul>
-              <Link href="/contact" className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
+              <Link href="/contact" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-transform transform hover:scale-110 shadow-lg hover:shadow-2xl duration-300">
                 Get Started
               </Link>
             </div>

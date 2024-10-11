@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="font-bold text-lg mb-4">WiteByte</h3>
+            <h3 className="font-bold text-lg mb-4">WireByte</h3>
             <p className="text-gray-400 mb-4">
               Bringing innovative solutions to businesses around the world.
             </p>

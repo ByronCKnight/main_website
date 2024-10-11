@@ -69,7 +69,7 @@ const ConsultingProcessPage = () => {
           ))}
         </div>
         <div className="mt-12 text-center">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-transform transform hover:scale-110 shadow-lg hover:shadow-2xl duration-300">
             Start Your Project
           </button>
         </div>
