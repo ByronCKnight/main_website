@@ -5,40 +5,57 @@ import Link from 'next/link';
 import Navbar from '@/components/ui/navbar';
 import Footer from '@/components/footer';
 import HamburgerMenu from '@/components/hamburgermenu';
+import FlickeringGrid from "@/components/ui/flickering-grid"; // Import FlickeringGrid
+import { RainbowButton } from "@/components/ui/rainbow-button"; // Import RainbowButton
 
 const PricingPage = () => {
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+  const [visible, setVisible] = useState(true); // State for navbar visibility
+  const [backgroundPositionY, setBackgroundPositionY] = useState(0);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const [backgroundPositionY, setBackgroundPositionY] = useState(0);
-
+  // Handle scroll to toggle navbar visibility
   useEffect(() => {
+    let lastScrollTop = 0;
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const backgroundElement = document.querySelector('.background-image') as HTMLElement;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+        setVisible(false); // Scroll down, hide navbar
+      } else {
+        setVisible(true); // Scroll up, show navbar
+      }
+      lastScrollTop = scrollTop;
 
+      // Adjust the background position if needed
+      const backgroundElement = document.querySelector('.background-image') as HTMLElement;
       if (backgroundElement) {
         const backgroundHeight = backgroundElement.offsetHeight;
         const maxScroll = backgroundHeight - window.innerHeight;
-        const newPositionY = Math.min(scrollY, maxScroll);
+        const newPositionY = Math.min(scrollTop, maxScroll);
         setBackgroundPositionY(-newPositionY);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "#000510" }}>
+      {/* Flickering Grid */}
+      <div className="fixed top-0 left-0 right-0 bottom-0 z-0">
+        <FlickeringGrid color={"#1E90FF"} /> {/* Blue */}
+      </div>
+
+      {/* Navigation */}
+      <header
+        className={`fixed w-full z-50 transition-all duration-300 ${visible ? "top-0" : "-top-full"}`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Navbar />
           <div className="md:hidden mt-4">
@@ -47,28 +64,18 @@ const PricingPage = () => {
         </div>
       </header>
 
-    <div className="relative">
-      {/* Background Image */}
-      <div
-        className="background-image absolute inset-0 -z-10 w-full h-screen bg-no-repeat bg-center bg-cover"
-        style={{
-          backgroundImage: `url('/images/pricing-background.png')`,
-          backgroundPositionY: `${backgroundPositionY}px`,
-        }}
-      ></div>
-
       {/* Content Container */}
-      <div className="container mx-auto py-16 relative z-10">
+      <div className="container mx-auto py-16 relative z-10 mt-10"> {/* Add margin-top */}
         <h1 className="text-5xl font-bold text-center mb-8 text-white">Our Pricing Plans</h1>
         <p className="text-xl text-center mb-12 text-white">Choose the plan that best suits your needs.</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Free Plan */}
           <div className="relative rounded-lg shadow overflow-hidden">
             <div
-              className="bg-[url('/images/pricing-card-background.png')] bg-cover bg-center h-80" // Ensure this path is correct
-              style={{ height: '300px', backgroundSize: 'cover' }} // Set height and cover
+              className="bg-[url('/images/pricing-card-background.png')] bg-cover bg-center h-80"
+              style={{ height: '300px', backgroundSize: 'cover' }}
             ></div>
-            <div className="p-6 absolute inset-0 flex flex-col justify-between bg-transparent"> {/* Remove the gray background */}
+            <div className="p-6 absolute inset-0 flex flex-col justify-between bg-transparent">
               <h2 className="text-3xl font-semibold mb-4 text-white">Basic Plan</h2>
               <p className="text-lg mb-4 text-white">R5000 + R499pm</p>
               <ul className="list-disc mb-8 text-white">
@@ -76,8 +83,8 @@ const PricingPage = () => {
                 <li>Basic features</li>
                 <li>Simple maintenance</li>
               </ul>
-              <Link href="/contact" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-transform transform hover:scale-110 shadow-lg hover:shadow-2xl duration-300">
-                Get Started
+              <Link href="/contact">
+                <RainbowButton>Get Unlimited Access</RainbowButton>
               </Link>
             </div>
           </div>
@@ -85,10 +92,10 @@ const PricingPage = () => {
           {/* Standard Plan */}
           <div className="relative rounded-lg shadow overflow-hidden">
             <div
-              className="bg-[url('/images/pricing-card-background.png')] bg-cover bg-center h-80" // Ensure this path is correct
-              style={{ height: '300px', backgroundSize: 'cover' }} // Set height and cover
+              className="bg-[url('/images/pricing-card-background.png')] bg-cover bg-center h-80"
+              style={{ height: '300px', backgroundSize: 'cover' }}
             ></div>
-            <div className="p-6 absolute inset-0 flex flex-col justify-between bg-transparent"> {/* Remove the gray background */}
+            <div className="p-6 absolute inset-0 flex flex-col justify-between bg-transparent">
               <h2 className="text-3xl font-semibold mb-4 text-white">Standard Plan</h2>
               <p className="text-lg mb-4 text-white">R5000 + R899pm</p>
               <ul className="list-disc mb-8 text-white">
@@ -96,8 +103,8 @@ const PricingPage = () => {
                 <li>Advanced features</li>
                 <li>High level maintenance</li>
               </ul>
-              <Link href="/contact" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-transform transform hover:scale-110 shadow-lg hover:shadow-2xl duration-300">
-                Get Started
+              <Link href="/contact">
+                <RainbowButton>Get Unlimited Access</RainbowButton>
               </Link>
             </div>
           </div>
@@ -105,10 +112,10 @@ const PricingPage = () => {
           {/* Enterprise Plan */}
           <div className="relative rounded-lg shadow overflow-hidden">
             <div
-              className="bg-[url('/images/pricing-card-background.png')] bg-cover bg-center h-80" // Ensure this path is correct
-              style={{ height: '300px', backgroundSize: 'cover' }} // Set height and cover
+              className="bg-[url('/images/pricing-card-background.png')] bg-cover bg-center h-80"
+              style={{ height: '300px', backgroundSize: 'cover' }}
             ></div>
-            <div className="p-6 absolute inset-0 flex flex-col justify-between bg-transparent"> {/* Remove the gray background */}
+            <div className="p-6 absolute inset-0 flex flex-col justify-between bg-transparent">
               <h2 className="text-3xl font-semibold mb-4 text-white">Premium Plan</h2>
               <p className="text-lg mb-4 text-white">R5000 + R1199pm</p>
               <ul className="list-disc mb-8 text-white">
@@ -117,15 +124,19 @@ const PricingPage = () => {
                 <li>All features</li>
                 <li>Top priority support and maintenance</li>
               </ul>
-              <Link href="/contact" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-transform transform hover:scale-110 shadow-lg hover:shadow-2xl duration-300">
-                Get Started
+              <Link href="/contact">
+                <RainbowButton>Get Unlimited Access</RainbowButton>
               </Link>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="relative z-10">
+        <Footer />
+      </footer>
     </div>
-  </div>
   );
 };
 

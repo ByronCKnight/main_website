@@ -7,7 +7,7 @@ const NavBar = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false); // Control services submenu for mobile
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50 rounded-md">
+    <nav className="bg-gradient-to-b from-blue-700 via-blue-1000 to-black shadow-md sticky top-0 z-50 rounded-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0">
@@ -28,7 +28,7 @@ const NavBar = () => {
             <div className="relative group">
               <Link
                 href="/services"
-                className="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium text-gray-500 border-transparent hover:border-gray-300 hover:text-gray-700"
+                className="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium text-white border-transparent hover:border-gray-300 hover:text-gray-300"
               >
                 Services
               </Link>
@@ -65,13 +65,13 @@ const NavBar = () => {
               </div>
             </div>
 
-            <Link href="/whyus" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+            <Link href="/whyus" className="border-transparent text-white hover:border-gray-300 hover:text-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
               Why Us
             </Link>
-            <Link href="/process" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+            <Link href="/process" className="border-transparent text-white hover:border-gray-300 hover:text-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
               Process
             </Link>
-            <Link href="/pricing" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+            <Link href="/pricing" className="border-transparent text-white hover:border-gray-300 hover:text-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
               Pricing
             </Link>
           </div>
